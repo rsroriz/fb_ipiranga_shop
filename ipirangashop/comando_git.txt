@@ -1,7 +1,7 @@
 git add .
 git status
 git commit -m "comentario"
-
+git push heroku master
 
 
 heroku create ( novos aplicativos ) determina aplicativo/pasta
