@@ -1,5 +1,6 @@
 <?php
 exit("123");
+exit("456");
 
 include_once("includes/php/fbmain.php");
 include_once("includes/php/funcoes.php");
