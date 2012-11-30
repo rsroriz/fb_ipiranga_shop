@@ -1,0 +1,7 @@
+git add .
+git status
+git commit -m "comentario"
+
+
+
+heroku create ( novos aplicativos ) determina aplicativo/pasta
