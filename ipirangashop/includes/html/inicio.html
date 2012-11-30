@@ -1,0 +1,242 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="https://www.w3.org/1999/xhtml" xmlns:og="https://ogp.me/ns#" xmlns:fb="https://www.facebook.com/2008/fbml">
+	<head>		
+		
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta property="og:locale" 		content="pt_BR" />
+		<meta property="fb:app_id"      content="567748983241208" />
+		<meta property="og:url" 		content="https://cont.senderdirect.com/facebook/msccruzeiros/" />
+		<meta property="og:title"       content="MSC Cruzeiros" /> 
+		<meta property="og:image"       content="https://cont.senderdirect.com/facebook/msccruzeiros/includes/images/msc-crociere.gif" /> 
+		<meta property="og:description" content="MSC Cruzeiros" />
+
+		<link href="includes/css/estilo.css" rel="stylesheet" type="text/css"/>
+		<link rel="stylesheet" type="text/css" href="includes/js/jquery.autocomplete.css" />
+		
+		<title>MSC Cruzeiros</title>
+	</head>
+
+	<body>
+		<div id="fb-root"></div>
+		<!--
+		<script type="text/javascript">
+			var _gaq = _gaq || [];
+			_gaq.push(['_setAccount', 'UA-25565637-2']);
+			_gaq.push(['_trackPageview']);
+			
+			(function() {
+				var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+				ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+				var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+			})();		
+		</script>
+		-->
+		
+		<script src="https://connect.facebook.net/en_US/all.js"></script>
+		<script type="text/javascript" src="includes/js/jquery.js"></script>
+		<script type='text/javascript' src='includes/js/jquery.autocomplete.js'></script>
+		
+		<script type="text/javascript">
+			FB.init({
+				appId  : '177219709040475',
+				status : true, // check login status
+				cookie : true, // enable cookies to allow the server to access the session
+				xfbml  : true
+			});
+			
+			FB._inCanvas = true;
+			
+			FB.Canvas.setAutoResize(true);
+		</script>
+		
+		<script type="text/javascript">
+			window.fbAsyncInit = function() {
+				setTimeout(function() {
+					FB.Canvas.setAutoResize();
+				}, 300);
+			}
+		</script>
+		
+
+		<input type="hidden" id="permissao_facebook" name="permissao_facebook" value="<var=permissao></var>">
+		
+		<script type="text/javascript">
+			if(document.getElementById("permissao_facebook").value == "1")
+			{	
+				FB.login(function(response){
+					//alert(response.session);
+					//alert(response.authResponse);
+					if (response.authResponse) {
+						//if (response.perms) {
+							// o usuario está logado e deu a permissão
+													
+							FB.api("/me", function(response){
+								document.getElementById("user_nome").value 	  	= response.name;
+								document.getElementById("user_email").value   	= response.email;
+								document.getElementById("user_profile").value 	= response.link;
+								document.getElementById("user_id").value 		= response.id;
+								document.getElementById("user_img").value 		= "https://graph.facebook.com/"+response.id+"/picture";
+								
+								document.getElementById("user_nome_voto").value 	= response.name;
+								document.getElementById("user_email_voto").value   	= response.email;
+								document.getElementById("user_profile_voto").value 	= response.link;
+								document.getElementById("user_id_voto").value 		= response.id;
+								document.getElementById("user_img_voto").value 		= "https://graph.facebook.com/"+response.id+"/picture";
+								
+								document.getElementById("form_resposta").submit();
+							});
+						//}
+					}
+				}, {scope:'publish_stream,email'});
+			}
+		</script>
+
+		
+		<script type="text/javascript">
+			function f_cadastra_resposta(){
+                /*
+                var body = "Estou concorrendo a uma viagem sensacional pelo aplicativo da MSC Cruzeiros.\n\nParticipe você também: https://apps.facebook.com/msccruzeiros";
+
+                FB.api('/me/feed', 'post', { message: body });
+                */
+                
+                
+                document.getElementById("form_resposta").submit();
+			}
+			
+			function f_cadastra_voto(id_resposta){
+                document.getElementById("id_resposta").value = id_resposta;
+
+				document.getElementById("form_votar").submit();
+			}
+			
+			function f_apaga_resposta(id_resposta){
+                document.getElementById("op").value = "apagar_resposta";
+				document.getElementById("id_resposta_form1").value = id_resposta;
+				
+				document.getElementById("form_resposta").submit();
+			}
+			
+			function f_indica_amigo(){
+				FB.ui({ method: 'apprequests', 
+       				    message: 'Peça ajuda a seus amigos para ganhar sua viagem!'});
+			}
+			
+			function limpar (objeto, msg){
+				if (objeto.value == msg)
+					objeto.value = '';
+			}
+			
+			function mostrar (objeto, msg){
+				if (objeto.value == '')
+					objeto.value = msg;
+			}
+		</script>
+		
+		<script type="text/javascript">
+			$().ready(function() {
+				$("#course").autocomplete("?op=pesquisa_ajax", {
+					width: 260,
+					matchContains: true,
+					selectFirst: false
+				});
+			});
+		</script>
+		<!--
+		<div id="geral">
+			<div id="header"><img src="/facebook/msccruzeiros/includes/images/header.jpg" width="700" height="434" border="0" usemap="#Map" />
+				<map name="Map" id="Map">
+					<area shape="poly" coords="-1,109" href="#" />
+					<area shape="poly" coords="1,106,148,-1,0,0" href="https://www.facebook.com/MSCCruzeirosBrasil" target="_blank" />
+				</map>
+			</div>
+			
+			<div id="video">
+				<div id="video_interno">
+					<iframe width="530" height="285" src="https://www.youtube.com/embed/OepoIW-fb2M?wmode=opaque" frameborder="0" allowfullscreen></iframe>
+				</div>
+			</div>
+			
+			<div id="sobre"><img src="/facebook/msccruzeiros/includes/images/sobre.jpg" width="700" height="327" border="0" usemap="#Map2" />
+				<map name="Map2" id="Map2">
+					<!-- <area shape="rect" coords="24,305,136,320" href="http://imagem.senderdirect.com/iqdirect/msc/Regulamento_MSC_e_TUDO_DE_BOM.pdf" target="_blank" /> -->
+					<!--<area shape="rect" coords="24,305,136,320" href="Regulamento_MSC_e_TUDO_DE_BOM.pdf" target="_blank" />
+				</map>
+			</div>
+			-->
+			<div id="pergunta">
+				<form method="post" name="form_resposta" id="form_resposta">
+					<input type="hidden" name="op" id="op" value="cadastra_resposta">
+					
+					<input type="hidden" name="perfil_nome"	 id="perfil_nome"  value="<var=perfil_nome></var>">
+				    <input type="hidden" name="perfil_email" id="perfil_email" value="<var=perfil_email></var>">
+				    <input type="hidden" name="perfil_foto"	 id="perfil_foto"  value="<var=perfil_foto></var>">
+				    <input type="hidden" name="perfil_link"	 id="perfil_link"  value="<var=perfil_link></var>">
+				    <input type="hidden" name="perfil_id"	 id="perfil_id"	   value="<var=perfil_id></var>">
+					
+					<input type="hidden" name="id_resposta"  id="id_resposta_form1" value="">
+				    
+					<center>
+						<label>
+							<textarea name="resposta" id="textarea" style="width:480px; height:105px;" cols="45" rows="6"></textarea>
+						</label>
+					</center>
+				
+					<var=msgerro></var>
+					
+					<input name="" style="float:right; margin:10px 0 0 0;" type="image" src="/facebook/msccruzeiros/includes/images/enviar.jpg" onclick="f_cadastra_resposta()"/>
+				</form>
+			</div>
+			
+			<div id="resposta">
+				<div id="resposta_interno">
+					<div class="content">
+						<div class="header">
+							<div class="titulo"><img src="/facebook/msccruzeiros/includes/images/respostas_titulo.jpg" width="125" height="31" /></div>
+								<div class="busca">
+									<form method="post" name="form_pesquisa" id="form_pesquisa" action="?op=busca">
+										<input type="hidden" name="perfil_nome"	 id="perfil_nome"  value="<var=perfil_nome></var>">
+										<input type="hidden" name="perfil_email" id="perfil_email" value="<var=perfil_email></var>">
+										<input type="hidden" name="perfil_foto"	 id="perfil_foto"  value="<var=perfil_foto></var>">
+										<input type="hidden" name="perfil_link"	 id="perfil_link"  value="<var=perfil_link></var>">
+										<input type="hidden" name="perfil_id"	 id="perfil_id"	   value="<var=perfil_id></var>">
+										
+										<input type="hidden" name="func" value="home">
+										<input type="text" class="caixa" name="course" id="course" onFocus="limpar (this,'PESQUISAR PARTICIPANTE');" onBlur="mostrar (this, 'PESQUISAR PARTICIPANTE');" value="PESQUISAR PARTICIPANTE" />
+										<input type="image" src="/facebook/msccruzeiros/includes/images/search.jpg" name="button" id="button" value="Submit" />
+										<var=ancora></var>
+									</form>
+								</div>
+							</div>
+					
+							<form id="form_votar" method="post">
+								<input type="hidden" name="op" value="cadastra_voto">
+								
+								<input type="hidden" name="perfil_nome"	 id="perfil_nome"  value="<var=perfil_nome></var>">
+								<input type="hidden" name="perfil_email" id="perfil_email" value="<var=perfil_email></var>">
+								<input type="hidden" name="perfil_foto"	 id="perfil_foto"  value="<var=perfil_foto></var>">
+								<input type="hidden" name="perfil_link"	 id="perfil_link"  value="<var=perfil_link></var>">
+								<input type="hidden" name="perfil_id"	 id="perfil_id"	   value="<var=perfil_id></var>">
+								
+								<input type="hidden" name="id_resposta" id="id_resposta" value="">
+
+								<var=respostas></var>
+
+							</form>
+					
+							<div class="indicar">
+								<input type="image" src="/facebook/msccruzeiros/includes/images/indicar_amigos.jpg" name="button" id="button" value="Submit" onclick="f_indica_amigo()"/>
+							</div>
+							
+							<div class="paginacao">
+								<var=anterior></var> <var=numeracao></var> <var=proxima></var>
+							</div>
+							
+							<div id="pagina"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
