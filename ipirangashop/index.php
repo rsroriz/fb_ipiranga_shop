@@ -1,6 +1,5 @@
 <?php
-exit("123");
-exit("456");
+exit("Servidor HEROKU funcionando!!!");
 
 include_once("includes/php/fbmain.php");
 include_once("includes/php/funcoes.php");
