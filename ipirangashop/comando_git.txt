@@ -1,5 +1,9 @@
+Manual de como conectar ---
+heroku login
+
 git add .
 git status
+heroku create
 git commit -m "comentario"
 git push heroku master
 
